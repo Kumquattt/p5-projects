@@ -1,0 +1,15 @@
+{
+  "source": "index.html",
+  "scripts": {
+    "dev": "rm -rf .parcel-cache && parcel serve --port 8080 --no-cache",
+    "dev-cached": "parcel --port 8080",
+    "build": "parcel build"
+  },
+  "dependencies": {
+    "@types/p5": "^1.7.6",
+    "p5": "^1.9.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  }
+}
