@@ -2,8 +2,10 @@ class Mold {
   baseSensorAngle = 45;
   rotatingAngle = 30;
   sensingDistance = 10;
-  r = 0.5;
+  r = 1.5;
   velocityCoef = 0.5;
+
+  color = [255, 255, 255];
 
   constructor() {
     this.heading = random(360);
@@ -13,13 +15,13 @@ class Mold {
     this.vx = cos(this.heading);
     this.vy = sin(this.heading);
 
-    this.sensors = [];
+    this.sensors = Array(3);
     for (let i in [...Array(3).keys()]) {
-      this.sensors.push({
+      this.sensors[i] = {
         pos: createVector(0, 0),
         angle: -this.baseSensorAngle + i * this.baseSensorAngle,
         dist: this.sensingDistance,
-      });
+      };
     }
   }
 
@@ -65,7 +67,7 @@ class Mold {
     if (front > left && front > right) {
       this.heading += 0;
     } else if (front < left && front < right) {
-      this.heading += random(this.rotatingAngle) - this.rotatingAngle /2
+      this.heading += random(this.rotatingAngle) - this.rotatingAngle / 2;
     } else if (left > right) {
       this.heading += -this.rotatingAngle;
     } else if (left < right) {
@@ -73,11 +75,13 @@ class Mold {
     }
   }
 
-  getSensorPos(sensor, angle) {}
+  setColor(r, g, b) {
+    this.color = [r, g, b];
+  }
 
   display() {
     noStroke();
-    fill(255);
+    fill(this.color);
     ellipse(this.x, this.y, this.r * 2, this.r * 2);
 
     //   line(
